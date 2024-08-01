@@ -6,10 +6,6 @@ VENV_DIR="$HOME/my_widget_env"
 WIDGET_EXECUTABLE_PATH="$HOME/my_widget_env/bin/widget"
 EDITOR_EXECUTABLE_PATH="$HOME/my_widget_env/bin/editor"
 
-# Скачивание готовых исполняемых файлов
-curl -L -o $WIDGET_EXECUTABLE_PATH "https://github.com/only-deb/Notes/releases/download/v1.0.0/widget"
-curl -L -o $EDITOR_EXECUTABLE_PATH "https://github.com/only-deb/Notes/releases/download/v1.0.0/editor"
-
 # Обновление системы и установка необходимых пакетов
 sudo apt update
 sudo apt install -y python3 python3-venv python3-pip python3-gi python3-gi-cairo gir1.2-gtk-3.0 glade wmctrl curl
@@ -25,6 +21,10 @@ pip install pygobject
 
 # Деактивация виртуального окружения
 deactivate
+
+# Скачивание готовых исполняемых файлов
+curl -L -o $WIDGET_EXECUTABLE_PATH "https://github.com/only-deb/Notes/releases/download/v1.0.0/widget"
+curl -L -o $EDITOR_EXECUTABLE_PATH "https://github.com/only-deb/Notes/releases/download/v1.0.0/editor"
 
 # Сделать исполняемые файлы действительно исполняемыми
 chmod +x $WIDGET_EXECUTABLE_PATH
