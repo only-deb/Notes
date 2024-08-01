@@ -32,6 +32,13 @@ pip install pygobject
 nano ~/.config/autostart/widget.desktop
 ```
 
+(если у вас нет такой директории, то создайте ее)
+
+```
+mkdir -p ~/.config/autostart
+```
+
+
 Добавьте в этот файл следующее содержимое:
 
 ```
