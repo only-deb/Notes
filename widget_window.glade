@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.0"/>
+  <object class="GtkWindow" id="widget_window">
+    <property name="title">Notes Widget</property>
+    <property name="default-width">400</property>
+    <property name="default-height">300</property>
+    <child>
+      <object class="GtkBox" id="widget_box">
+        <property name="orientation">vertical</property>
+        <property name="spacing">10</property>
+        <property name="border-width">10</property>
+        <child>
+          <object class="GtkTreeView" id="widget_note_list">
+            <property name="headers-visible">True</property>
+            <child>
+            </child>
+            <child>
+              <object class="GtkTreeViewColumn">
+                <property name="title">Заголовок</property>
+                <child>
+                  <object class="GtkCellRendererText"/>
+                  <attributes>
+                    <attribute name="text">1</attribute>
+                  </attributes>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
