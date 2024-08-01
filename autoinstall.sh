@@ -1,35 +1,12 @@
 #!/bin/bash
 
-# Название виртуального окружения
-VENV_DIR="$HOME/my_widget_env"
-
 # Путь к исполняемым файлам виджета и редактора
-WIDGET_EXECUTABLE_PATH="$VENV_DIR/bin/widget"
-EDITOR_EXECUTABLE_PATH="$VENV_DIR/bin/editor"
-
-# URL для скачивания готовых исполняемых файлов
-WIDGET_URL="https://raw.githubusercontent.com/only-deb/Notes/main/widget/widget"
-EDITOR_URL="https://raw.githubusercontent.com/only-deb/Notes/main/editor/editor"
-
-# Обновление системы и установка необходимых пакетов
-sudo apt update
-sudo apt install -y python3 python3-venv python3-pip python3-gi python3-gi-cairo gir1.2-gtk-3.0 glade wmctrl curl
-
-# Создание виртуального окружения
-python3 -m venv $VENV_DIR
-
-# Активация виртуального окружения
-source $VENV_DIR/bin/activate
-
-# Установка необходимых пакетов в виртуальном окружении
-pip install pygobject
-
-# Деактивация виртуального окружения
-deactivate
+WIDGET_EXECUTABLE_PATH="$HOME/my_widget_env/bin/widget"
+EDITOR_EXECUTABLE_PATH="$HOME/my_widget_env/bin/editor"
 
 # Скачивание готовых исполняемых файлов
-curl -L -o $WIDGET_EXECUTABLE_PATH $WIDGET_URL
-curl -L -o $EDITOR_EXECUTABLE_PATH $EDITOR_URL
+curl -L -o $WIDGET_EXECUTABLE_PATH "https://github.com/only-deb/Notes/releases/download/v1.0.0/widget"
+curl -L -o $EDITOR_EXECUTABLE_PATH "https://github.com/only-deb/Notes/releases/download/v1.0.0/editor"
 
 # Сделать исполняемые файлы действительно исполняемыми
 chmod +x $WIDGET_EXECUTABLE_PATH
