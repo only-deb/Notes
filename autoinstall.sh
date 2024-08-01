@@ -1,5 +1,7 @@
 #!/bin/bash
 
+VENV_DIR="$HOME/my_widget_env"
+
 # Путь к исполняемым файлам виджета и редактора
 WIDGET_EXECUTABLE_PATH="$HOME/my_widget_env/bin/widget"
 EDITOR_EXECUTABLE_PATH="$HOME/my_widget_env/bin/editor"
