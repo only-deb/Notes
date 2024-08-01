@@ -13,7 +13,7 @@ EDITOR_URL="https://github.com/only-deb/Notes/blob/main/editor/editor"
 
 # Обновление системы и установка необходимых пакетов
 sudo apt update
-sudo apt install -y python3 python3-venv python3-pip python3-gi python3-gi-cairo gir1.2-gtk-3.0 wmctrl curl
+sudo apt install -y python3 python3-venv python3-pip python3-gi python3-gi-cairo gir1.2-gtk-3.0 glade wmctrl curl
 
 # Создание виртуального окружения
 python3 -m venv $VENV_DIR
@@ -24,12 +24,12 @@ source $VENV_DIR/bin/activate
 # Установка необходимых пакетов в виртуальном окружении
 pip install pygobject
 
+# Деактивация виртуального окружения
+deactivate
+
 # Скачивание готовых исполняемых файлов
 curl -L -o $WIDGET_EXECUTABLE_PATH $WIDGET_URL
 curl -L -o $EDITOR_EXECUTABLE_PATH $EDITOR_URL
-
-# Деактивация виртуального окружения
-deactivate
 
 # Сделать исполняемые файлы действительно исполняемыми
 chmod +x $WIDGET_EXECUTABLE_PATH
@@ -39,9 +39,6 @@ chmod +x $EDITOR_EXECUTABLE_PATH
 cat <<EOL > $HOME/start_widget.sh
 #!/bin/bash
 
-# Активация виртуального окружения
-source $VENV_DIR/bin/activate
-
 # Запуск виджета
 $WIDGET_EXECUTABLE_PATH &
 
@@ -50,9 +47,6 @@ sleep 2
 
 # Закрепить окно виджета на рабочем столе
 wmctrl -r "Notes Widget" -b add,sticky
-
-# Деактивация виртуального окружения
-deactivate
 EOL
 
 # Сделать скрипт исполняемым
@@ -62,14 +56,8 @@ chmod +x $HOME/start_widget.sh
 cat <<EOL > $HOME/start_editor.sh
 #!/bin/bash
 
-# Активация виртуального окружения
-source $VENV_DIR/bin/activate
-
 # Запуск редактора
 $EDITOR_EXECUTABLE_PATH &
-
-# Деактивация виртуального окружения
-deactivate
 EOL
 
 # Сделать скрипт исполняемым
