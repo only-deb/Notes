@@ -8,8 +8,8 @@ WIDGET_EXECUTABLE_PATH="$VENV_DIR/bin/widget"
 EDITOR_EXECUTABLE_PATH="$VENV_DIR/bin/editor"
 
 # URL для скачивания готовых исполняемых файлов
-WIDGET_URL="https://github.com/only-deb/Notes/blob/main/widget/widget"
-EDITOR_URL="https://github.com/only-deb/Notes/blob/main/editor/editor"
+WIDGET_URL="https://raw.githubusercontent.com/only-deb/Notes/main/widget/widget"
+EDITOR_URL="https://raw.githubusercontent.com/only-deb/Notes/main/editor/editor"
 
 # Обновление системы и установка необходимых пакетов
 sudo apt update
