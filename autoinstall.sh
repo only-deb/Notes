@@ -1,10 +1,15 @@
 #!/bin/bash
 
+# Название виртуального окружения
 VENV_DIR="$HOME/my_widget_env"
 
 # Путь к исполняемым файлам виджета и редактора
-WIDGET_EXECUTABLE_PATH="$HOME/my_widget_env/bin/widget"
-EDITOR_EXECUTABLE_PATH="$HOME/my_widget_env/bin/editor"
+WIDGET_EXECUTABLE_PATH="$VENV_DIR/bin/widget"
+EDITOR_EXECUTABLE_PATH="$VENV_DIR/bin/editor"
+
+# URL для скачивания готовых исполняемых файлов
+WIDGET_URL="https://github.com/only-deb/Notes/releases/download/v1.0.0/widget"
+EDITOR_URL="https://github.com/only-deb/Notes/releases/download/v1.0.0/editor"
 
 # Обновление системы и установка необходимых пакетов
 sudo apt update
@@ -12,6 +17,10 @@ sudo apt install -y python3 python3-venv python3-pip python3-gi python3-gi-cairo
 
 # Создание виртуального окружения
 python3 -m venv $VENV_DIR
+if [ ! -d "$VENV_DIR" ]; then
+    echo "Ошибка: не удалось создать виртуальное окружение в $VENV_DIR"
+    exit 1
+fi
 
 # Активация виртуального окружения
 source $VENV_DIR/bin/activate
@@ -22,9 +31,21 @@ pip install pygobject
 # Деактивация виртуального окружения
 deactivate
 
-# Скачивание готовых исполняемых файлов
-curl -L -o $WIDGET_EXECUTABLE_PATH "https://github.com/only-deb/Notes/releases/download/v1.0.0/widget"
-curl -L -o $EDITOR_EXECUTABLE_PATH "https://github.com/only-deb/Notes/releases/download/v1.0.0/editor"
+# Создание директории для исполняемых файлов
+mkdir -p $VENV_DIR/bin
+
+# Загрузка готовых исполняемых файлов
+curl -L -o $WIDGET_EXECUTABLE_PATH $WIDGET_URL
+if [ $? -ne 0 ]; then
+    echo "Ошибка: не удалось загрузить виджет с $WIDGET_URL"
+    exit 1
+fi
+
+curl -L -o $EDITOR_EXECUTABLE_PATH $EDITOR_URL
+if [ $? -ne 0 ]; then
+    echo "Ошибка: не удалось загрузить редактор с $EDITOR_URL"
+    exit 1
+fi
 
 # Сделать исполняемые файлы действительно исполняемыми
 chmod +x $WIDGET_EXECUTABLE_PATH
